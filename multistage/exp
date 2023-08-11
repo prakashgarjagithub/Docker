@@ -1,0 +1,6 @@
+FROM ubuntu AS generator
+RUN mkdir /test && touch test/{1..100}.txt
+
+FROM alpine
+COPY --from=generator /test /test
+CMD ["sleep", "1d"]
